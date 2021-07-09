@@ -1,0 +1,38 @@
+
+
+header {
+    color: white;
+    text-align: center;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    background: rgb(9,0,36);
+    background: linear-gradient(90deg, rgba(9,0,36,1) 0%, rgba(121,9,86,1) 0%, rgba(102,0,255,1) 100%);
+}
+
+.city-search {
+    line-height: 2.5rem;
+}
+
+hr {
+    padding: 0;
+    margin-top: 8px auto;
+    margin-bottom: 12px;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-top: 2px solid #aaaaaa;
+    border-bottom: 2px solid #ffffff;
+ }
+
+ .forecast-row {
+    margin-left: 25%;
+    margin-top: 10px;
+ }
+
+ .forecast-row h3 {
+     padding-left: 14px;
+ }

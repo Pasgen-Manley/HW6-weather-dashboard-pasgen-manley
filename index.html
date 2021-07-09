@@ -5,9 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 
-    
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+    <header>
+        <h1>
+            Weather Dashboard
+        </h1>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row p-3 p-md-2">
+            
+
+                <!--City search-->
+                <div class="col-3">
+                    <form>
+                        <h2>
+                        Search for a city: 
+                        </h2>
+                        <input class="col-12 city-search" type="text" placeholder="City Name">
+                        <button type="button" class="btn btn-primary col-12 mt-2 " id="search-btn">Search</button>
+                        <hr>
+                    </form>
+
+                    <!--Search history-->
+                    <div class="card">
+                        <ul class="list-group list-group-flush" id="search-history-list">
+                            <!-- <li class="list-group-item"></li> -->
+                        </ul>
+                        <button id="clear-history" class="btn btn-sm btn-secondary hide">Clear History</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col-9" id="weather-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="city-weather border rounded">
+                                <h2 id="current-city">City Name<span id="current-date"></span></h2>
+
+                                <p>Temp: <span id="current-temp"></span></p>
+                                <p>Wind: <span id="current-wind"></span></p>
+                                <p>Humidity: <span id="humidity"></span></p>
+                                <p>UV Index: <span id="current-UV"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--5-Day Forcaast area-->
+                <div class="col-9 forecast-row">
+                    <div class="row">
+                        <h3>5-Day Forecast</h3>
+                        
+                    
+                
+                        <div class="col-12">
+                            <div id="five-day-forecast">
+                                <div class="col-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Date</h5>
+                                        <i class="fa fa-sun"></i>
+                                        <p class="card-text">Temp: </p>
+                                        <p class="card-text">Wind: </p>
+                                        <p class="card-text">Humidity: </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <body>
     
 </body>
