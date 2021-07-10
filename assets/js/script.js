@@ -23,4 +23,57 @@ var currentDate = moment().format('L');
 $("#current-date").text("(" + currentDate + ")");
 
 
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
+
+$(document).on("submit", function(event){
+    event.preventDefault();
+    
+    var searchInputValue = citySearchInput.val().trim();
+
+    if (!searchInputValue) {
+        alert("Please enter a valid city name.");
+        return;
+    } else {
+        searchWeatherAPI(searchInputValue)
+        searchHistory(searchInputValue);
+        citySearchInput.val("");
+    };
+
+    
+});
+
+citySearchBtn.on("click", function(){
+    //event.preventDefault();
+
+    var searchInputValue = citySearchInput.val().trim();
+
+    if (!searchInputValue) {
+        alert("Please enter a valid city name.");
+        return;
+    } else {
+        searchWeatherAPI(searchInputValue)
+        searchHistory(searchInputValue);
+        citySearchInput.val("");
+    };
+
+});
+
+
+
+
+
+
+function searchWeatherAPI (citySearchInput) {
+
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearchInput + "&appid=" + APIKey;
+
+    fetch(queryURL)
+        .then(function (response){
+            return response.json();
+        })
+        .then(function (data){
+            console.log(data);
+        })
+}
+
+searchWeatherAPI();
