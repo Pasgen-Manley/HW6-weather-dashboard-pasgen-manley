@@ -31,7 +31,7 @@
                         Search for a city: 
                         </h2>
                         <input class="col-12" type="text" placeholder="City Name" id="city-search">
-                        <button type="button" class="btn btn-primary col-12 mt-2 " id="search-btn">Search</button>
+                        <button type="submit" class="btn btn-primary col-12 mt-2 " id="search-btn">Search</button>
                         <hr>
                     </form>
 
@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="city-weather border rounded">
-                                <h2 id="current-city">City Name<span id="current-date"></span></h2>
+                                <h2 id="current-city">City Name<img id="current-date"></span><img id="current-icon"></h2>
 
                                 <p>Temp: <span id="current-temp"></span></p>
                                 <p>Wind: <span id="current-wind"></span></p>
@@ -62,24 +62,15 @@
                 </div>
                 
                 <!--5-Day Forcaast area-->
-                <div class="col-9 forecast-row">
+                <div class="col-10 forecast-row">
                     <div class="row">
                         <h3>5-Day Forecast</h3>
                         
                     
-                
                         <div class="col-12">
-                            <div id="five-day-forecast">
-                                <div class="col-2">
-                                    <div class="card">
-                                        <div class="card-body">
-                                        <h5 class="card-title">Date</h5>
-                                        <i class="5-day-icon"></i>
-                                        <p class="card-text">Temp: </p>
-                                        <p class="card-text">Wind: </p>
-                                        <p class="card-text">Humidity: </p>
-                                        </div>
-                                    </div>
+                            <div class="row" id="five-day-forecast">
+                                <div>
+                                   <!--Weather forecast cards go here--> 
                                 </div>
                             </div>
                         </div>
@@ -89,6 +80,6 @@
     
     </div>
 
-    
+    <script src="./assets/js/script.js"></script>  
 </body>
 </html>

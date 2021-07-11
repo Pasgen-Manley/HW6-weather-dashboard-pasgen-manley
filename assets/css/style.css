@@ -1,4 +1,6 @@
-
+p {
+    font-weight: bold;
+}
 
 header {
     color: white;
@@ -36,3 +38,8 @@ hr {
  .forecast-row h3 {
      padding-left: 14px;
  }
+
+
+ /*.card-title {
+
+ } */
