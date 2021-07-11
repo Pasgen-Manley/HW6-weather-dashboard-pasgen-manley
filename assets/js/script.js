@@ -28,6 +28,8 @@ $("#current-date").text("(" + currentDate + ")");
 
 $(document).on("submit", function(event){
     event.preventDefault();
+
+    $("#five-day-forecast").empty();
     
     var searchInputValue = citySearchInput.val().trim();
 
@@ -38,6 +40,7 @@ $(document).on("submit", function(event){
         searchWeatherAPI(searchInputValue)
         searchHistory(searchInputValue);
         citySearchInput.val("");
+        $("#five-day-forecast").empty();
         
     };
 
@@ -152,6 +155,8 @@ function searchWeatherAPI (citySearchInput) {
                         forecastCard.append(forecastBody);
 
                         forecastBody.append(forecastDate, forecastIcon, forecastTemp, forecastWind, forecastHumidity);
+
+
 
                     }
                 })
