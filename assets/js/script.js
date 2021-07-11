@@ -38,9 +38,9 @@ $(document).on("submit", function(event){
         searchWeatherAPI(searchInputValue)
         searchHistory(searchInputValue);
         citySearchInput.val("");
+        
     };
 
-    
 });
 
 //citySearchBtn.on("click", function(){
@@ -58,7 +58,6 @@ $(document).on("submit", function(event){
     //};
 
 //});
-
 
 
 function searchWeatherAPI (citySearchInput) {
@@ -93,6 +92,14 @@ function searchWeatherAPI (citySearchInput) {
                 .then(function (UVdata){
                     console.log(UVdata);
                     currentUV.text(UVdata.current.uvi);
+
+                    if (UVdata.current.uvi <= 2) {
+                        currentUV.addClass("badge badge-success");
+                    } else if (UVdata.current.uvi <= 5) {
+                        currentUV.addClass("badge badge-warning");
+                    } else {
+                        currentUV.addClass("badge badge-danger");
+                    }
                 })     
             });
     
@@ -119,8 +126,6 @@ function searchWeatherAPI (citySearchInput) {
                         forecastCard.addClass("card col-1 col-sm-2 ml-3").attr("id", "fc-card" + i);
                         
 
-
-
                         var forecastDate = $("<h5>");
                         forecastDate.addClass("card-title").attr("id", "fc-date" + i);
                         var forecastDatetime = moment().add(i, 'days').format('M/D/YYYY');
@@ -142,21 +147,11 @@ function searchWeatherAPI (citySearchInput) {
                         forecastHumidity.text("Humidity: " + forecastData.list[i].main.humidity + "%");
                         console.log(forecastHumidity);
 
-
                         
                         $("#five-day-forecast").append(forecastCard);
                         forecastCard.append(forecastBody);
 
                         forecastBody.append(forecastDate, forecastIcon, forecastTemp, forecastWind, forecastHumidity);
-
-
-
-
-
-                        
-                        
-                        
-
 
                     }
                 })
