@@ -39,7 +39,6 @@ hr {
      padding-left: 14px;
  }
 
-
- /*.card-title {
-
- } */
+ li {
+    list-style: none;
+ }

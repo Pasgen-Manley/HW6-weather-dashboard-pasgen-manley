@@ -2,7 +2,7 @@
 var APIKey = "2bee4f18e1f3cf6ed8255bb5b44479e7"; 
 
 // Varibles
-cityList = [];
+cityArray = [];
 
 citySearchBtn = $("#search-btn");
 citySearchInput = $("#city-search");
@@ -46,21 +46,23 @@ $(document).on("submit", function(event){
 
 });
 
-//citySearchBtn.on("click", function(){
-    //event.preventDefault();
+function searchHistory() {
 
-    //var searchInputValue = citySearchInput.val().trim();
+    for ( i = 0; i < localStorage.length; i++) {
+        var cityHistoryEl = $('<li>');
+        var cityBtn = $('<button>');
 
-    //if (!searchInputValue) {
-        //alert("Please enter a valid city name.");
-        //return;
-    //} else {
-        //searchWeatherAPI(searchInputValue)
-        //searchHistory(searchInputValue);
-        //citySearchInput.val("");
-    //};
+        cityBtn.addClass("btn btn-secondary col-12 mb-2").attr('type', 'button');
+        cityBtn.text(JSON.parse(localStorage.getItem("cityname")));
 
-//});
+        cityHistoryEl.append(cityBtn);
+        cityHIstoryli.append(cityHistoryEl);
+
+    }
+}
+
+
+
 
 
 function searchWeatherAPI (citySearchInput) {
@@ -127,6 +129,7 @@ function searchWeatherAPI (citySearchInput) {
                         
                         
                         forecastCard.addClass("card col-1 col-sm-2 ml-3").attr("id", "fc-card" + i);
+                        forecastCard.css('background-color', '#C8CBCC');
                         
 
                         var forecastDate = $("<h5>");
@@ -156,10 +159,14 @@ function searchWeatherAPI (citySearchInput) {
 
                         forecastBody.append(forecastDate, forecastIcon, forecastTemp, forecastWind, forecastHumidity);
 
-
+                        
 
                     }
                 })
 
-};
 
+            
+            
+
+            localStorage.setItem('cityname', JSON.stringify(citySearchInput));
+};
