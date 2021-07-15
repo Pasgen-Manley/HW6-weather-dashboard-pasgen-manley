@@ -9,3 +9,8 @@ The requirements of this project were to develop an weather dashboard applicatio
 
 #### Project Functionality Examples
 
+How the application looks before inputs
+![Black homepage](./assets/images/BlankHP.png)
+
+How the application looks after city inputs
+![homepage with city weather data](./assets/images/Homepage.png)

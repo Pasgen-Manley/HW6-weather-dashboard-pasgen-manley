@@ -1,15 +1,13 @@
 //OpenWeather API key
 var APIKey = "2bee4f18e1f3cf6ed8255bb5b44479e7"; 
 
-// Varibles
+// Array
 cityArray = [];
 
 citySearchBtn = $("#search-btn");
 citySearchInput = $("#city-search");
 cityHIstoryli = $("#search-history-list");
 clearHistoryBtn = $("#clear-history");
-
-var weatherContent = $("#weather-content");
 
 // Varibles of the current city input
 var currentCIty = $("#current-city");
@@ -18,6 +16,7 @@ var currentWind = $("#current-wind");
 var currentHumid = $("#current-humidity");
 var currentUV = $("#current-UV");
 var currentIcon = $("#current-icon");
+var weatherContent = $("#weather-content");
 
 // Use moment to get the current date
 var currentDate = moment().format('L');
@@ -37,36 +36,39 @@ $(document).on("submit", function(event){
         alert("Please enter a valid city name.");
         return;
     } else {
-        searchWeatherAPI(searchInputValue)
+        searchWeatherAPI(searchInputValue);
         searchHistory(searchInputValue);
         citySearchInput.val("");
-        $("#five-day-forecast").empty();
-        
-    };
-
+        $("#five-day-forecast").empty();      
+    };  
 });
 
+cityHIstoryli.on('click', function (event) {
 
+    $('#five-day-forecast').empty();
+    console.log('event.target', event.target);
+    console.log('event.target.textContent', event.target.textContent);
 
+    searchWeatherAPI(event.target.textContent);   
+});
 
 function searchHistory() {
-
-    
+ 
         cityArray[cityArray.length-1];
 
          var cityHistoryEl = $('<li>');
          var cityBtn = $('<button>');
 
         cityBtn.addClass("btn btn-secondary col-12 mb-2").addClass("history-btn" + length).attr('type', 'button').attr("id", "city-btn");
-        //cityBtn.text(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        
         cityBtn.text(cityArray[cityArray.length-1]);
-
+        
         cityHistoryEl.append(cityBtn);
         cityHIstoryli.append(cityHistoryEl);
-    
-} 
+};
 
 $(document).ready(function() {
+    
     var displayCities = JSON.parse(localStorage.getItem("cityname"));
     console.log(displayCities);
     if (displayCities) {
@@ -76,31 +78,22 @@ $(document).ready(function() {
              var cityBtn = $('<button>');
 
              cityBtn.addClass("btn btn-secondary col-12 mb-2").addClass("history-btn" + i).attr('type', 'button').attr("id", "city-btn");
-             //cityBtn.text(JSON.parse(localStorage.getItem(localStorage.key(i))));
              cityBtn.text(displayCities[i]);
 
              cityHistoryEl.append(cityBtn);
              cityHIstoryli.append(cityHistoryEl);
-             
-             cityBtn.on('click', function(event){
-                 event.preventDefault();
-                target_id = $( event.target ).val().trim();
-                console.log(target_id);
+
+            cityBtn.on('click', function (event) {
+                event.preventDefault();
+                $('#five-day-forecast').empty();
+                console.log('event.target', event.target);
+                console.log('event.target.textContent', event.target.textContent);
             
-                searchWeatherAPI(target_id);
-                //localStorage.setItem('cityname', JSON.stringify(cityArray));
-                
-            })
-        }
- 
-   }  
-   
-   
+                searchWeatherAPI(event.target.textContent);
+            });
+        }   
+    }  
 }); 
-
-
-
-
 
 function searchWeatherAPI (citySearchInput) {
 
@@ -185,26 +178,23 @@ function searchWeatherAPI (citySearchInput) {
                         forecastWind.addClass("card-text").attr("id", "fc-wind" + i);
                         forecastWind.text("Wind: " + forecastData.list[i].wind.speed + " m/s");
                         
-
                         forecastHumidity.addClass("card-text").attr("id", "fc-wind" + i);
                         forecastHumidity.text("Humidity: " + forecastData.list[i].main.humidity + "%");
                         console.log(forecastHumidity);
 
-                        
                         $("#five-day-forecast").append(forecastCard);
                         forecastCard.append(forecastBody);
-
-                        forecastBody.append(forecastDate, forecastIcon, forecastTemp, forecastWind, forecastHumidity);
-
                         
-
+                        forecastBody.append(forecastDate, forecastIcon, forecastTemp, forecastWind, forecastHumidity);
                     }
                 })
 
-
-                cityArray.push(citySearchInput);
+               if (!cityArray.includes(citySearchInput)) {
+                    cityArray.push(citySearchInput);
+                    console.log(cityArray)    
+                };
+                console.log(cityArray)
+                
                 localStorage.setItem('cityname', JSON.stringify(cityArray));
-            
-
-            
+                     
 };
