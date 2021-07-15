@@ -23,7 +23,7 @@ var currentIcon = $("#current-icon");
 var currentDate = moment().format('L');
 $("#current-date").text("(" + currentDate + ")");
 
-
+var target_id = [];
 
 
 $(document).on("submit", function(event){
@@ -46,20 +46,57 @@ $(document).on("submit", function(event){
 
 });
 
+
+
+
 function searchHistory() {
 
-    for ( i = 0; i < localStorage.length; i++) {
-        var cityHistoryEl = $('<li>');
-        var cityBtn = $('<button>');
+    
+        cityArray[cityArray.length-1];
 
-        cityBtn.addClass("btn btn-secondary col-12 mb-2").attr('type', 'button');
-        cityBtn.text(JSON.parse(localStorage.getItem("cityname")));
+         var cityHistoryEl = $('<li>');
+         var cityBtn = $('<button>');
+
+        cityBtn.addClass("btn btn-secondary col-12 mb-2").addClass("history-btn" + length).attr('type', 'button').attr("id", "city-btn");
+        //cityBtn.text(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        cityBtn.text(cityArray[cityArray.length-1]);
 
         cityHistoryEl.append(cityBtn);
         cityHIstoryli.append(cityHistoryEl);
+    
+} 
 
-    }
-}
+$(document).ready(function() {
+    var displayCities = JSON.parse(localStorage.getItem("cityname"));
+    console.log(displayCities);
+    if (displayCities) {
+        for (i = 0; i < displayCities.length; i++) {
+            
+             var cityHistoryEl = $('<li>');
+             var cityBtn = $('<button>');
+
+             cityBtn.addClass("btn btn-secondary col-12 mb-2").addClass("history-btn" + i).attr('type', 'button').attr("id", "city-btn");
+             //cityBtn.text(JSON.parse(localStorage.getItem(localStorage.key(i))));
+             cityBtn.text(displayCities[i]);
+
+             cityHistoryEl.append(cityBtn);
+             cityHIstoryli.append(cityHistoryEl);
+             
+             cityBtn.on('click', function(event){
+                 event.preventDefault();
+                target_id = $( event.target ).val().trim();
+                console.log(target_id);
+            
+                searchWeatherAPI(target_id);
+                //localStorage.setItem('cityname', JSON.stringify(cityArray));
+                
+            })
+        }
+ 
+   }  
+   
+   
+}); 
 
 
 
@@ -165,8 +202,9 @@ function searchWeatherAPI (citySearchInput) {
                 })
 
 
-            
+                cityArray.push(citySearchInput);
+                localStorage.setItem('cityname', JSON.stringify(cityArray));
             
 
-            localStorage.setItem('cityname', JSON.stringify(citySearchInput));
+            
 };
