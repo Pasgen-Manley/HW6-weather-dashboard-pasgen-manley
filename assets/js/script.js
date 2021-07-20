@@ -97,7 +97,7 @@ $(document).ready(function() {
 
 function searchWeatherAPI (citySearchInput) {
 
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearchInput + "&units=metric" + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearchInput + "&units=metric" + "&appid=" + APIKey;
 
     fetch(queryURL)
         .then(function (response){
